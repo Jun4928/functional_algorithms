@@ -1,12 +1,7 @@
-const { L, takeAll, log, go } = require('./functions')
+const { L, takeAll, log, go, pipe } = require('./functions')
 
-const getOdds = (limit) =>
-  go(
-    L.range(limit + 1),
-    L.filter((a) => a % 2),
-    takeAll
-  )
+const getOdds = ({ limit, predicate }) => go(L.range(limit + 1), L.filter(predicate), takeAll)
 
-const odds = getOdds(100)
+const odds = getOdds({ limit: 100, predicate: (a) => a % 2 === 0 })
 
 log(odds)
