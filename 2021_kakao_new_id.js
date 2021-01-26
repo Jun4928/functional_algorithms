@@ -1,22 +1,12 @@
-const { go, curry, take, log } = require('./functions')
+const { go, take, log, replace, repeatLast, join } = require('./functions')
 
 const ALLOWED = /[^-_.a-z0-9]/g
 const DOTS_MORE_THAN_TWO = /\.{2,}/g
 const FIRST_AND_LAST_DOT = /^\.|\.$/g
 
 const toLowerCase = (str) => str.toLowerCase()
-const join = (arr) => arr.join('')
-const replace = curry(({ parser, replacement }, str) => str.replace(parser, replacement))
 const ifEmpty = (str) => (str.length ? str : 'a')
-const isLonger = (str) => (str.length >= 16 ? go(str, take(15), join) : str)
-const repeatLast = curry((limit, str) => {
-  const repeat = (str) => {
-    if (str.length >= limit) return str
-    else return repeat(str.concat('', str[str.length - 1]))
-  }
-
-  return repeat(str)
-})
+const isLonger = (str) => (str.length >= 16 ? go(str, take(15), join('')) : str)
 
 const solution = (newId) =>
   go(

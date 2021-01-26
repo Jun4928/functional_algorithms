@@ -88,6 +88,15 @@ const forEach = curry((f, iter) => {
 const sort = curry((f = null, iter) => (f ? [...iter].sort(f) : [...iter].sort()))
 const slice = curry((idx, iter) => iter.slice(idx))
 const join = curry((seperator = '', iter) => iter.join(seperator))
+const replace = curry(({ parser, replacement }, str) => str.replace(parser, replacement))
+const repeatLast = curry((limit, str) => {
+  const repeat = (str) => {
+    if (str.length >= limit) return str
+    else return repeat(str.concat('', str[str.length - 1]))
+  }
+
+  return repeat(str)
+})
 
 module.exports = {
   log,
@@ -111,5 +120,7 @@ module.exports = {
   sort,
   slice,
   join,
+  replace,
+  repeatLast,
   L,
 }
