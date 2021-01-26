@@ -14,6 +14,11 @@ const reduce = curry((f, acc, iter) => {
   return acc
 })
 
+const reduceWithOption = curry(({ f, acc }, iter) => {
+  for (const el of iter) acc = f(acc, el)
+  return acc
+})
+
 const go = (value, ...functions) => reduce((acc, fn) => fn(acc), value, functions)
 const pipe = (fn, ...functions) => (...values) => go(fn(...values), ...functions)
 
@@ -74,6 +79,15 @@ const flat = pipe(L.flat, takeAll)
 const deepFlat = pipe(L.deepFlat, takeAll)
 const entries = pipe(L.entries, takeAll)
 const flatMap = curry(pipe(L.flatMap, takeAll))
+const max = (iter) => Math.max(...iter)
+
+const forEach = curry((f, iter) => {
+  for (const el of iter) f(el)
+})
+
+const sort = curry((f = null, iter) => (f ? [...iter].sort(f) : [...iter].sort()))
+const slice = curry((idx, iter) => iter.slice(idx))
+const join = curry((seperator = '', iter) => iter.join(seperator))
 
 module.exports = {
   log,
@@ -91,5 +105,11 @@ module.exports = {
   deepFlat,
   entries,
   flatMap,
+  reduceWithOption,
+  max,
+  forEach,
+  sort,
+  slice,
+  join,
   L,
 }

@@ -1,5 +1,4 @@
-const log = console.log
-const { go, curry, take } = require('./functions')
+const { go, curry, take, log } = require('./functions')
 
 const ALLOWED = /[^-_.a-z0-9]/g
 const DOTS_MORE_THAN_TWO = /\.{2,}/g
