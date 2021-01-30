@@ -14,11 +14,6 @@ const reduce = curry((f, acc, iter) => {
   return acc
 })
 
-const reduceWithOption = curry(({ f, acc }, iter) => {
-  for (const el of iter) acc = f(acc, el)
-  return acc
-})
-
 const go = (value, ...functions) => reduce((acc, fn) => fn(acc), value, functions)
 const pipe = (fn, ...functions) => (...values) => go(fn(...values), ...functions)
 
@@ -56,6 +51,11 @@ L.deepFlat = function* f(iter) {
 }
 
 L.flatMap = curry(pipe(L.map, L.flat))
+
+L.prepend = curry(function* (val, iter) {
+  yield val
+  yield* iter
+})
 
 const take = curry((limit, iter) => {
   const res = []
@@ -120,7 +120,6 @@ module.exports = {
   deepFlat,
   entries,
   flatMap,
-  reduceWithOption,
   max,
   forEach,
   sort,

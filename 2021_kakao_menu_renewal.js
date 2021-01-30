@@ -1,4 +1,4 @@
-const { log, L, map, go, reduceWithOption, max, sort, curry, join } = require('./functions')
+const { log, L, map, go, max, sort, curry, join, reduce } = require('./functions')
 
 const solution = (orders, course) => {
   const maxOrderCount = go(
@@ -23,7 +23,8 @@ const solution = (orders, course) => {
     const menuCount = go(
       orders,
       L.flatMap((order) => getCombinations(number, [...order])),
-      reduceWithOption({ f: getMaxCount, acc: { count: {}, maxCount: 0 } })
+      L.prepend({ count: {}, maxCount: 0 }),
+      reduce(getMaxCount)
     )
 
     return go(
