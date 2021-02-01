@@ -5,10 +5,9 @@ const binarySearchLowerBound = curry((target, arr) => {
   let left = 0
   let right = arr.length - 1
 
-  let mid
-  while (left < right) {
-    mid = Math.floor((left + right) / 2)
-    if (target <= arr[mid]) right = mid
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2)
+    if (target <= arr[mid]) right = mid - 1
     if (arr[mid] < target) left = mid + 1
   }
 

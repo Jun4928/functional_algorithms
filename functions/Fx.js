@@ -104,6 +104,21 @@ const trace = curry((label, value) => {
   return value
 })
 
+const binarySearch = curry((target, arr) => {
+  if (!arr) return -1
+  let min = 0
+  let max = arr.length - 1
+
+  while (min <= max) {
+    const mid = Math.floor((min + max) / 2)
+    if (arr[mid] === target) return mid
+    if (arr[mid] < target) min = mid + 1
+    if (target < arr[mid]) max = mid - 1
+  }
+
+  return -1
+})
+
 module.exports = {
   log,
   curry,
@@ -129,5 +144,6 @@ module.exports = {
   repeatLast,
   split,
   trace,
+  binarySearch,
   L,
 }
