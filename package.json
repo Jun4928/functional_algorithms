@@ -1,0 +1,24 @@
+{
+  "name": "functional_algorithms",
+  "version": "1.0.0",
+  "description": "함수형 프로그래밍으로 알고리즘 문제 해결하기",
+  "main": "2021_kakao_menu_renewal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jun4928/functional_algorithms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jun4928/functional_algorithms/issues"
+  },
+  "homepage": "https://github.com/Jun4928/functional_algorithms#readme",
+  "dependencies": {
+    "fxjs": "^0.21.2"
+  },
+  "type": "module" 
+}
