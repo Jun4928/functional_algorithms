@@ -14,8 +14,10 @@ const reduce = curry((f, acc, iter) => {
   return acc
 })
 
-const go = (value, ...functions) => reduce((acc, fn) => fn(acc), value, functions)
-const pipe = (fn, ...functions) => (...values) => go(fn(...values), ...functions)
+const go = (value, ...functions) =>
+  reduce((acc, fn) => fn(acc), value, functions)
+const pipe = (fn, ...functions) => (...values) =>
+  go(fn(...values), ...functions)
 
 const L = {}
 
@@ -85,11 +87,15 @@ const forEach = curry((f, iter) => {
   for (const el of iter) f(el)
 })
 
-const sort = curry((f = null, iter) => (f ? [...iter].sort(f) : [...iter].sort()))
+const sort = curry((f = null, iter) =>
+  f ? [...iter].sort(f) : [...iter].sort()
+)
 const slice = curry((idx, iter) => iter.slice(idx))
 const split = curry((seperator, str) => str.split(seperator))
 const join = curry((seperator = '', iter) => iter.join(seperator))
-const replace = curry(({ parser, replacement }, str) => str.replace(parser, replacement))
+const replace = curry(({ parser, replacement }, str) =>
+  str.replace(parser, replacement)
+)
 const repeatLast = curry((limit, str) => {
   const repeat = (str) => {
     if (str.length >= limit) return str
@@ -119,6 +125,10 @@ const binarySearch = curry((target, arr) => {
   return -1
 })
 
+const find = curry((f, iter) =>
+  go(iter, L.filter(f), take[1], ([a]) => a)
+)
+
 module.exports = {
   log,
   curry,
@@ -146,4 +156,5 @@ module.exports = {
   trace,
   binarySearch,
   L,
+  find,
 }
